@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/info_toolbar"
+            style="@style/NoSpaceActionBarTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/chenjin"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="我的信息"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+        </android.support.v7.widget.Toolbar>
+
+        <com.wq.myclass.transform.XCRoundImageView
+            android:id="@+id/info_header"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/ic_header_boy" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/login_view"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/info_names"
+                android:layout_alignBottom="@+id/info_names"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="33dp"
+                android:text="姓名："
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/info_names"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text=""
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/login_view"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/info_sex"
+                android:layout_alignBottom="@+id/info_sex"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="33dp"
+                android:text="性别："
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/info_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text=""
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/login_view"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/info_stuno"
+                android:layout_alignBottom="@+id/info_stuno"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="33dp"
+                android:text="学号："
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/info_stuno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text=""
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/login_view"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/info_email"
+                android:layout_alignBottom="@+id/info_email"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="33dp"
+                android:text="邮箱："
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/info_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text=""
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/email_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/info_email"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="15dp"
+                android:text="修改"
+                android:textColor="#5069EE"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/login_view"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/info_phone"
+                android:layout_alignBottom="@+id/info_phone"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="33dp"
+                android:text="电话："
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/info_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text=""
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/phone_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/info_phone"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="15dp"
+                android:text="修改"
+                android:textColor="#5069EE"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/login_view"></View>
+
+        <Button
+            android:id="@+id/info_exit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/exit_shape"
+            android:text="注销登录"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="chenjin">#57BFCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="dan_black">#696969</color>
+    <color name="login_view">#E8E8E8</color>
+    <color name="reset_pass">#A2A2A2</color>
+    <color name="main_view">#E0E0E0</color>
+    <color name="a">#636363</color>
+    <color name="touming">#00000000</color>
+    <color name="res">#AFB0B1</color>
+    <color name="wenzi">#7D7D7D</color>
+
+    <color name="putong">#ABABAB</color>
+    <color name="adress">#4CBB9A</color>
+    <color name="word">#3DC747</color>
+    <color name="notice">#25B6E5</color>
+</resources>

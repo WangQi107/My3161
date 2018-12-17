@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolbar"
+        style="@style/NoSpaceActionBarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <com.wq.myclass.transform.XCRoundImageView
+            android:id="@+id/main_header"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/ic_header_boy" />
+
+        <TextView
+            android:id="@+id/main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="公告"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/framgment_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view"
+        android:layout_below="@+id/main_toolbar"></FrameLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_above="@+id/radiogroup"
+        android:background="@color/main_view"></View>
+
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_notice"
+            style="@style/style_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:drawableTop="@drawable/rb_notice_img"
+            android:text="公告墙" />
+
+        <RadioButton
+            android:id="@+id/rb_adress"
+            style="@style/style_adress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/rb_adress_img"
+            android:text="通讯录" />
+
+        <RadioButton
+            android:id="@+id/rb_word"
+            style="@style/style_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/rb_word_img"
+            android:text="留言板" />
+    </RadioGroup>
+</RelativeLayout>

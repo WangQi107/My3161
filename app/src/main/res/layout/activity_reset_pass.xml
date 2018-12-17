@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/reset_toolbar"
+        style="@style/NoSpaceActionBarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reset_pass"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/names"
+            android:textColor="@color/dan_black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/reset_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edit_shape"
+            android:hint="@string/nameok"
+            android:maxLength="12"
+            android:maxLines="1"
+            android:inputType="number"
+            android:textColor="@color/dan_black" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/login_view"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:text="原密码:"
+            android:textColor="@color/dan_black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/or_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edit_shape"
+            android:hint="请输入原密码"
+            android:inputType="textPassword"
+            android:textColor="@color/dan_black" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/login_view"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:text="新密码:"
+            android:textColor="@color/dan_black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/reset_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edit_shape"
+            android:hint="@string/passtips"
+            android:inputType="textPassword"
+            android:textColor="@color/dan_black" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/login_view"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/passok"
+            android:textColor="@color/dan_black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/reset_passok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/edit_shape"
+            android:hint="@string/pass_ok"
+            android:inputType="textPassword"
+            android:textColor="@color/dan_black" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/login_view"></View>
+
+    <Button
+        android:id="@+id/reset_btn"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/button_shape"
+        android:text="@string/reset_btn"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+</LinearLayout>

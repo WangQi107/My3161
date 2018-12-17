@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/login_toolbar"
+        style="@style/NoSpaceActionBarTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/login_title"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="5dp"
+                android:maxLength="3"
+                android:text="@string/names"
+                android:textColor="@color/dan_black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edit_shape"
+                android:hint="请输入学号"
+                android:maxLength="12"
+                android:inputType="number"
+                android:textColor="@color/dan_black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/login_view"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/passes"
+                android:textColor="@color/dan_black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/edit_shape"
+                android:hint="@string/passtips"
+                android:inputType="textPassword"
+                android:textColor="@color/dan_black" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/login_view"></View>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="35dp"
+        android:background="@drawable/button_shape"
+        android:text="@string/login_btn"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tv_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:text="@string/reset_pass"
+        android:textColor="@color/reset_pass"
+        android:textSize="15sp" />
+
+</LinearLayout>
