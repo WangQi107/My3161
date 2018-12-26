@@ -1,11 +1,9 @@
 package com.wq.myclass.utils;
 
-/**
- * 这是异步任务完成后调用的接口
- * 有两个方法，成功将调用onFinished方法
- * 失败将调用onFailed方法
- */
+import java.util.Map;
+
 public interface OnTaskFinishedListener {
     void onFinished(Object obj);
+    void getmap(Map<String,String> map);
     void onFailed(Exception ex, String msg);
 }

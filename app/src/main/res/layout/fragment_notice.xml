@@ -5,38 +5,58 @@
     android:orientation="vertical"
     tools:context="com.wq.myclass.fragment.Fragment_Notice">
 
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/RR"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/white">-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/white">
 
-        <!--<TextView-->
-            <!--android:id="@+id/tv_zhiding"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:text="[置顶]"-->
-            <!--android:textColor="#5069EE"-->
-            <!--android:textSize="16sp" />-->
+        <TextView
+            android:id="@+id/tv_zhiding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:text="[置顶]"
+            android:textColor="#5069EE"
+            android:textSize="16sp" />
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:layout_toRightOf="@+id/tv_zhiding"-->
-            <!--android:text="今日作业"-->
-            <!--android:textSize="16sp" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/tv_zhiding"
+            android:text="今日天气"
+            android:textSize="16sp" />
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:text="2018年01月18日"-->
-            <!--android:textSize="16sp" />-->
-    <!--</RelativeLayout>-->
+        <TextView
+            android:id="@+id/tv_qw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tv_we"
+            android:text=""
+            android:layout_centerVertical="true"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_we"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="7dp"
+            android:layout_toLeftOf="@+id/ic_we"
+            android:text=""
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/ic_we"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="2dp"/>
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/lv_notice"

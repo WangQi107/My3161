@@ -44,30 +44,11 @@ public class MainActivity extends BaseActivity {
     private void initViews() {
         mainheader = findViewById(R.id.main_header);
         radioGroup = findViewById(R.id.radiogroup);
-//        rbnotic = findViewById(R.id.rb_notice);
         rbadress = findViewById(R.id.rb_adress);
-//        rbword = findViewById(R.id.rb_word);
         maintitle = findViewById(R.id.main_title);
     }
 
     private void setViews() {
-//        SharedPreferences a = this.getSharedPreferences("Name", MODE_PRIVATE);
-//        SharedPreferences b = this.getSharedPreferences("Sex", MODE_PRIVATE);
-//        final String name = a.getString("name", "");
-//        final String sex = b.getString("sex", "");
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                if (sex.equals("女")) {
-//                    mainheader.setImageResource(R.mipmap.ic_header_girl);
-//                } else {
-//                    mainheader.setImageResource(R.mipmap.ic_header_boy);
-//                }
-//                if (name.equals("刘艳") || name.equals("刘爽") || name.equals("刘士")) {
-//                    mainheader.setImageResource(R.mipmap.ic_header_teacher);
-//                }
-//            }
-//        }).start();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction fs = fm.beginTransaction();
         Fragment_Notice df01 = new Fragment_Notice();

@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wq.myclass.R;
 import com.wq.myclass.adapter.Notice_Adapter;
@@ -18,14 +21,18 @@ import com.wq.myclass.dialog.Homework_dialog;
 import com.wq.myclass.utils.URLHelper;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -36,7 +43,11 @@ public class Fragment_Notice extends Fragment {
     private ListView lvnotice;
     private URLHelper all;
     private List<Notice> notices;
-//    private RelativeLayout rr;0
+//    private RelativeLayout rr;
+
+    private TextView tvqw;
+    private TextView tvtq;
+    private ImageView icwe;
 
     public Fragment_Notice() {
 
@@ -48,6 +59,9 @@ public class Fragment_Notice extends Fragment {
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_notice, container, false);
         lvnotice = v.findViewById(R.id.lv_notice);
+        tvqw = v.findViewById(R.id.tv_qw);
+        tvtq = v.findViewById(R.id.tv_we);
+        icwe = v.findViewById(R.id.ic_we);
 //        rr = v.findViewById(R.id.RR);
 //        rr.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -69,13 +83,91 @@ public class Fragment_Notice extends Fragment {
 //            }
 //        });
         setViews();
+        new getWeather(tvqw, tvtq, icwe).execute();
         return v;
     }
 
     private void setViews() {
         all = new URLHelper();
         String a = all.getURL("One");
-        new getNoticeTask(a, notices,lvnotice).execute();
+        new getNoticeTask(a, notices, lvnotice).execute();
+    }
+
+    class getWeather extends AsyncTask<Void, Void, String> {
+        private TextView tvqw;
+        private TextView tvtq;
+        private ImageView icwe;
+
+        public getWeather(TextView tvqw, TextView tvtq, ImageView icwe) {
+            this.tvqw = tvqw;
+            this.tvtq = tvtq;
+            this.icwe = icwe;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            URL url = null;
+            try {
+                url = new URL("http://api.yytianqi.com/observe?city=CH250101&key=ua590ubl0wu94hoq");
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("GET");
+                InputStream is = con.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                String line = "";
+                StringBuilder sb = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                String strJson = sb.toString();
+                Log.i("JSON:", strJson);
+                return strJson;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject object = new JSONObject(s);
+                String sd = object.getString("data");
+                JSONObject obj = new JSONObject(sd);
+                String tq = obj.getString("tq");
+                String qw = obj.getString("qw");
+                tvtq.setText(tq);
+                tvqw.setText(qw + "°C");
+                switch (tq) {
+                    case "晴":
+                        icwe.setImageResource(R.mipmap.sun);
+                        break;
+                    case "多云":
+                        icwe.setImageResource(R.mipmap.duoyun);
+                        break;
+                    case "阴":
+                        icwe.setImageResource(R.mipmap.yintian);
+                        break;
+                    case "阵雨":
+                        icwe.setImageResource(R.mipmap.rain);
+                        break;
+                    case "雨夹雪":
+                        icwe.setImageResource(R.mipmap.yujiaxue);
+                        break;
+                    case "雾":
+                        icwe.setImageResource(R.mipmap.fog);
+                        break;
+                    case "刮风":
+                        icwe.setImageResource(R.mipmap.guafeng);
+                        break;
+                    default:
+                        icwe.setImageResource(R.mipmap.sun);
+                        break;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            super.onPostExecute(s);
+        }
     }
 
     class getNoticeTask extends AsyncTask<Void, Void, String> {
@@ -86,7 +178,7 @@ public class Fragment_Notice extends Fragment {
         public getNoticeTask(String a, List<Notice> notices, ListView lvnotice) {
             this.strUrl = a;
             this.list = notices;
-            this.lvnotice=lvnotice;
+            this.lvnotice = lvnotice;
         }
 
         @Override
@@ -130,13 +222,13 @@ public class Fragment_Notice extends Fragment {
             try {
                 JSONArray array = new JSONArray(s);
                 for (int i = 0; i < array.length(); i++) {
-                    JSONObject obj=array.getJSONObject(i);
-                    int id=obj.getInt("nid");
-                    String name=obj.getString("uname");
-                    String text=obj.getString("ntext");
-                    String time=obj.getString("ntime");
-                    String title=obj.getString("ntitle");
-                    Notice n=new Notice(id,title,name,time,text);
+                    JSONObject obj = array.getJSONObject(i);
+                    int id = obj.getInt("nid");
+                    String name = obj.getString("uname");
+                    String text = obj.getString("ntext");
+                    String time = obj.getString("ntime");
+                    String title = obj.getString("ntitle");
+                    Notice n = new Notice(id, title, name, time, text);
                     list.add(n);
                 }
             } catch (Exception e) {

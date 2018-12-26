@@ -6,12 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
 
-/**
- * Fragment集合
- */
-
 public class Fragmet_Adapter extends FragmentPagerAdapter {
-    //定义一个Fragment集合
     List<Fragment> list = null;
 
     public Fragmet_Adapter(FragmentManager fm, List<Fragment> list) {

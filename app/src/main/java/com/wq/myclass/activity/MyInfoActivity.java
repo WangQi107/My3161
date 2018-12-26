@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.wq.myclass.R;
 import com.wq.myclass.dialog.MyDialog;
 import com.wq.myclass.dialog.Update_Dialog;
+import com.wq.myclass.utils.GetipTask;
+import com.wq.myclass.utils.OnTaskFinishedListener;
 import com.wq.myclass.utils.URLHelper;
 
 import org.json.JSONException;
@@ -29,6 +31,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.wq.myclass.utils.ToastHelper.showToast;
 
@@ -43,9 +47,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private TextView emailupdate;
     private TextView phoneupdate;
     private Button btnexit;
-    //    private XCRoundImageView infoheader;
     private Update_Dialog dialog;
     private String contentStr;
+    private TextView myip;
     URLHelper all = null;
     SharedPreferences s = null;
     private String number = null;
@@ -70,9 +74,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                     break;
                 case 2:
                     try {
-                        JSONObject obj= (JSONObject) msg.obj;
-                        String res=obj.getString("key");
-                        if (res.equals("update success")){
+                        JSONObject obj = (JSONObject) msg.obj;
+                        String res = obj.getString("key");
+                        if (res.equals("update success")) {
                             infophone.setText(contentStr);
                             showToast(getApplicationContext(), "修改成功");
                             dialog.dismiss();
@@ -108,7 +112,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         emailupdate = findViewById(R.id.email_update);
         phoneupdate = findViewById(R.id.phone_update);
         btnexit = findViewById(R.id.info_exit);
-//        infoheader = findViewById(R.id.info_header);
+        myip = findViewById(R.id.showip);
     }
 
     private void setViews() {
@@ -137,13 +141,30 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         } else {
             Log.i("Num Null", number);
         }
+//        new GetipTask(this, new OnTaskFinishedListener() {
+//            @Override
+//            public void onFinished(Object obj) {
+//
+//            }
+//
+//            @Override
+//            public void getmap(Map<String, String> map) {
+//                String ip = map.get("ip");
+//                String location = map.get("location");
+//                myip.setText(ip + location);
+//            }
+//
+//            @Override
+//            public void onFailed(Exception ex, String msg) {
+//                showToast(getApplicationContext(), "获取失败");
+//            }
+//        }).execute();
     }
 
     class GetInfoTask extends AsyncTask<Void, Void, String> {
-        private String num;//登录的学号
-        private String strUrl;//登录方法的网址
+        private String num;
+        private String strUrl;
 
-        //通过构造函数传值
         public GetInfoTask(String num, String url) {
             this.num = num;
             this.strUrl = url;
@@ -151,31 +172,25 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
         @Override
         protected String doInBackground(Void... voids) {
-            //包装网址，将字符串网址转成URL类型
             strUrl += "getinfo" + "&unum=" + num;
             Log.i("URL", strUrl);
             try {
                 URL url = new URL(strUrl);
-                //通过安卓的网络请求对象来读取
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                con.setRequestMethod("GET");//设置请求方式为get
-                con.setReadTimeout(5000);// 设置读取超时为5秒
-                con.setConnectTimeout(10000);// 设置连接网络超时为10秒
-                int responseCode = con.getResponseCode();//获取网络连接状态
+                con.setRequestMethod("GET");
+                con.setReadTimeout(5000);
+                con.setConnectTimeout(10000);
+                int responseCode = con.getResponseCode();
                 Log.i("ResponseCode", String.valueOf(responseCode));
                 if (responseCode == 200) {
-                    //得到网络的输入流
                     InputStream is = con.getInputStream();
-                    //将输入流转化字符串
                     BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                     String line = "";
                     StringBuilder sb = new StringBuilder();
-                    while ((line = reader.readLine()) != null) {//循环读取输入缓冲流
+                    while ((line = reader.readLine()) != null) {
                         sb.append(line);
                     }
-                    //这是sb这个对象里面存放的就是登录返回的json字符串
                     String strJson = sb.toString();
-                    //子线程结束，将数据返回给onPostExecute方法
                     Log.i("JSON:", strJson);
                     return strJson;
                 }
@@ -228,7 +243,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                                         Log.i("URL", u);
                                         URL url = new URL(u);
                                         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                                        con.setRequestMethod("GET");
+                                        con.setRequestMethod("G+ET");
                                         con.setReadTimeout(5000);
                                         con.setConnectTimeout(10000);
                                         int responseCode = con.getResponseCode();
@@ -323,7 +338,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             case R.id.info_exit:
                 final MyDialog dialog = new MyDialog(this);
                 dialog.setTitle("注销");
-                dialog.setMessage("确定要注销登录吗？" );
+                dialog.setMessage("确定要注销登录吗？");
                 dialog.setNoOnclickListener("取消", new MyDialog.onNoOnclickListener() {
                     @Override
                     public void onNoClick() {
@@ -336,7 +351,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                         Intent intent = new Intent();
                         intent.setAction("exitapp");
                         sendBroadcast(intent);
-                        Intent i=new Intent(getApplicationContext(),LoginActivity.class);
+                        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(i);
                     }
                 });

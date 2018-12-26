@@ -10,21 +10,19 @@ import android.widget.TextView;
 import com.wq.myclass.R;
 
 public class MyDialog extends Dialog {
-    private Button yes;//确定按钮
-    private Button no;//取消按钮
-    private TextView titleTv;//消息标题文本
-    private TextView messageTv;//消息提示文本
-    private String titleStr;//从外界设置的title文本
-    private String messageStr;//从外界设置的消息文本
-    //确定文本和取消文本的显示内容
+    private Button yes;
+    private Button no;
+    private TextView titleTv;
+    private TextView messageTv;
+    private String titleStr;
+    private String messageStr;
     private String yesStr, noStr;
 
-    private onNoOnclickListener noOnclickListener;//取消按钮被点击了的监听器
-    private onYesOnclickListener yesOnclickListener;//确定按钮被点击了的监听器
+    private onNoOnclickListener noOnclickListener;
+    private onYesOnclickListener yesOnclickListener;
 
     /**
      * 设置取消按钮的显示内容和监听
-     *
      * @param str
      * @param onNoOnclickListener
      */

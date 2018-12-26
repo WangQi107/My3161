@@ -183,7 +183,7 @@ public class Fragment_Word extends Fragment {
             }
             adapter = new Word_Adapter(getActivity(), list);
             lvwords.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+//            adapter.notifyDataSetChanged();
             super.onPostExecute(s);
         }
     }

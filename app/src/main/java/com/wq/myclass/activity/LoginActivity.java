@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
 import static com.wq.myclass.utils.ToastHelper.showToast;
 
@@ -61,7 +62,6 @@ public class LoginActivity extends BaseActivity {
     private void setViews() {
         setSupportActionBar(logintoolbar);
         etlogin.setCursorVisible(false);
-//        etpass.setCursorVisible(false);
     }
 
     private void setListeners() {
@@ -108,6 +108,12 @@ public class LoginActivity extends BaseActivity {
                     }
 
                     @Override
+                    public void getmap(Map<String, String> map) {
+
+                    }
+
+
+                    @Override
                     public void onFailed(Exception ex, String msg) {
                         Log.i("Error Msg:", msg);
                         showToast(getApplicationContext(), "请求失败");
@@ -118,12 +124,11 @@ public class LoginActivity extends BaseActivity {
     }
 
     class LoginTask extends AsyncTask<Void, Void, String> {
-        private String num;//登录的学号
-        private String pwd;//登录的密码
-        private String strUrl;//登录方法的网址
-        private OnTaskFinishedListener listener;//回调接口
+        private String num;
+        private String pwd;
+        private String strUrl;
+        private OnTaskFinishedListener listener;
 
-        //通过构造函数传值
         public LoginTask(String num, String pwd, String url, OnTaskFinishedListener listener) {
             this.num = num;
             this.pwd = pwd;
@@ -133,31 +138,25 @@ public class LoginActivity extends BaseActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-            //包装网址，将字符串网址转成URL类型
             strUrl += "login" + "&unum=" + num + "&upwd=" + pwd;
             Log.i("URL", strUrl);
             try {
                 URL url = new URL(strUrl);
-                //通过安卓的网络请求对象来读取
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                con.setRequestMethod("GET");//设置请求方式为get
-                con.setReadTimeout(5000);// 设置读取超时为5秒
-                con.setConnectTimeout(10000);// 设置连接网络超时为10秒
-                int responseCode = con.getResponseCode();//获取网络连接状态
+                con.setRequestMethod("GET");
+                con.setReadTimeout(5000);
+                con.setConnectTimeout(10000);
+                int responseCode = con.getResponseCode();
                 Log.i("ResponseCode", String.valueOf(responseCode));
                 if (responseCode == 200) {
-                    //得到网络的输入流
                     InputStream is = con.getInputStream();
-                    //将输入流转化字符串
                     BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                     String line = "";
                     StringBuilder sb = new StringBuilder();
-                    while ((line = reader.readLine()) != null) {//循环读取输入缓冲流
-                        sb.append(line + "\n");
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
                     }
-                    //这是sb这个对象里面存放的就是登录返回的json字符串
                     String strJson = sb.toString();
-                    //子线程结束，将数据返回给onPostExecute方法
                     Log.i("JSON:", strJson);
                     return strJson;
                 }
@@ -172,10 +171,7 @@ public class LoginActivity extends BaseActivity {
             super.onPostExecute(s);
             String msg = "";
             try {
-                //参数s就是异步任务网络请求返回的json字符串
-                //通过JSONObject转换成了JSON对像
                 JSONObject obj = new JSONObject(s);
-                //通过键返回的对应的值
                 msg = obj.getString("key");
                 listener.onFinished(msg);
                 if (msg.equals("login success")) {
@@ -201,15 +197,11 @@ public class LoginActivity extends BaseActivity {
                     String p = l.getString("passes").trim();
                     etlogin.setText(n);
                     etpass.setText(p);
-                    //etpass.setCursorVisible(false);//不出现光标
                 }
                 super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    /*
-    双击退出
-     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {

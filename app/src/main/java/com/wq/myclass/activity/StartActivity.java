@@ -38,9 +38,6 @@ public class StartActivity extends AppCompatActivity {
         handler.postDelayed(t, 1800);
     }
 
-    /*
-    设置全屏
-     */
     private void setWindows() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -48,8 +45,8 @@ public class StartActivity extends AppCompatActivity {
 
     private void initViews() {
         startwelcome = findViewById(R.id.start_welcome);
-        animation = new AlphaAnimation(0.1f, 1.0f);//设置动画
-        animation.setDuration(1500);//设置动画播放时间
+        animation = new AlphaAnimation(0.1f, 1.0f);
+        animation.setDuration(1500);
         startwelcome.setAnimation(animation);
     }
 

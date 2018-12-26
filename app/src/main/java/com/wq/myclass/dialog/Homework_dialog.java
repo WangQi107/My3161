@@ -8,10 +8,6 @@ import android.widget.Button;
 
 import com.wq.myclass.R;
 
-/**
- * Created by wq107 on 2018/1/19.
- */
-
 public class Homework_dialog extends Dialog {
     private Button btnexit;
     private OnOkOnclickListener okclike;
