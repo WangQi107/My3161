@@ -20,11 +20,24 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的信息"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
+
+            <android.support.v7.widget.ActionMenuView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp">
+
+                <ImageButton
+                    android:id="@+id/ib_share"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@mipmap/fenxiang" />
+            </android.support.v7.widget.ActionMenuView>
         </android.support.v7.widget.Toolbar>
 
         <com.wq.myclass.transform.XCRoundImageView

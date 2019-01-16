@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private Update_Dialog dialog;
     private String contentStr;
     private TextView myip;
+    private ImageButton ibshare;
     URLHelper all = null;
     SharedPreferences s = null;
     private String number = null;
@@ -113,10 +115,12 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         phoneupdate = findViewById(R.id.phone_update);
         btnexit = findViewById(R.id.info_exit);
         myip = findViewById(R.id.showip);
+        ibshare = findViewById(R.id.ib_share);
     }
 
     private void setViews() {
         infotoolbar.setNavigationIcon(R.mipmap.icon_back);
+        infotoolbar.setTitle("");
         setSupportActionBar(infotoolbar);
         infotoolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +134,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         emailupdate.setOnClickListener(this);
         phoneupdate.setOnClickListener(this);
         btnexit.setOnClickListener(this);
+        ibshare.setOnClickListener(this);
     }
 
     private void getDatas() {
@@ -243,7 +248,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                                         Log.i("URL", u);
                                         URL url = new URL(u);
                                         HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                                        con.setRequestMethod("G+ET");
+                                        con.setRequestMethod("GET");
                                         con.setReadTimeout(5000);
                                         con.setConnectTimeout(10000);
                                         int responseCode = con.getResponseCode();
@@ -356,6 +361,30 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                     }
                 });
                 dialog.show();
+                break;
+            case R.id.ib_share:
+                shareText("分享My3161", null, "App下载链接：http://139.9.34.158:8080/Download/My3161/My3161.apk");
+                break;
+        }
+    }
+
+    private void shareText(String dlgTitle, String subject, String content) {
+        if (content == null || "".equals(content)) {
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        if (subject != null && !"".equals(subject)) {
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        }
+
+        intent.putExtra(Intent.EXTRA_TEXT, content);
+
+        // 设置弹出框标题
+        if (dlgTitle != null && !"".equals(dlgTitle)) { // 自定义标题
+            startActivity(Intent.createChooser(intent, dlgTitle));
+        } else { // 系统默认标题
+            startActivity(intent);
         }
     }
 }
