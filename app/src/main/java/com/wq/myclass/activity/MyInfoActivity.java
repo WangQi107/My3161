@@ -18,8 +18,6 @@ import android.widget.Toast;
 import com.wq.myclass.R;
 import com.wq.myclass.dialog.MyDialog;
 import com.wq.myclass.dialog.Update_Dialog;
-import com.wq.myclass.utils.GetipTask;
-import com.wq.myclass.utils.OnTaskFinishedListener;
 import com.wq.myclass.utils.URLHelper;
 
 import org.json.JSONException;
@@ -146,24 +144,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         } else {
             Log.i("Num Null", number);
         }
-//        new GetipTask(this, new OnTaskFinishedListener() {
-//            @Override
-//            public void onFinished(Object obj) {
-//
-//            }
-//
-//            @Override
-//            public void getmap(Map<String, String> map) {
-//                String ip = map.get("ip");
-//                String location = map.get("location");
-//                myip.setText(ip + location);
-//            }
-//
-//            @Override
-//            public void onFailed(Exception ex, String msg) {
-//                showToast(getApplicationContext(), "获取失败");
-//            }
-//        }).execute();
+        new GetipTask(myip).execute();
     }
 
     class GetInfoTask extends AsyncTask<Void, Void, String> {
@@ -215,6 +196,53 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 infostunm.setText(obj.getString("number"));
                 infoemail.setText(obj.getString("email"));
                 infophone.setText(obj.getString("tel"));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    class GetipTask extends AsyncTask<Void, Void, String> {
+        private TextView myip;
+
+        public GetipTask(TextView myip) {
+            this.myip=myip;
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                URL url = new URL("http://ip-api.com/json");
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod("GET");
+                con.setReadTimeout(5000);
+                con.setConnectTimeout(10000);
+                int responseCode = con.getResponseCode();
+                Log.i("ResponseCode", String.valueOf(responseCode));
+                if (responseCode == 200) {
+                    InputStream is = con.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                    String line = "";
+                    StringBuilder sb = new StringBuilder();
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                    }
+                    String strJson = sb.toString();
+                    Log.i("JSON:", strJson);
+                    return strJson;
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+                JSONObject obj = new JSONObject(s);
+                myip.setText("当前IP:"+obj.getString("query")+"---"+"地区:"+obj.getString("country")+obj.getString("regionName")+obj.getString("city")+"---"+"ISP:"+obj.getString("isp"));
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

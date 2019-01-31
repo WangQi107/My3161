@@ -30,14 +30,14 @@
         <activity
             android:name=".activity.MyInfoActivity"
             android:theme="@style/AppTheme_one">
-
-        </activity>
-        <activity android:name=".activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.StartActivity">
+
         </activity>
     </application>
 
